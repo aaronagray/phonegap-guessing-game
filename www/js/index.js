@@ -28,9 +28,12 @@ var game = {
       score++
       game.startGame()
     } else {
-      score--
+      if (score != 0) {
+        score--
+      }
       navigator.vibrate(3000)
       game.startGame()
+
     }
   }
 }
