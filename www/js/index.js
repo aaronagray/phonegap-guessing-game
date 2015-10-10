@@ -6,10 +6,23 @@ var score = 0
 // Game Elements in DOM
 var title = document.getElementById('title'),
     images = document.querySelectorAll('#list img')
-    scoreDisplay = document.getElementById('scoreDisplay')
+    scoreDisplay = document.getElementById('scoreDisplay'),
+    timer = document.getElementById('timer')
+
+timer.innerHTML = 5
+
+setInterval(function() {
+  timer.innerHTML = Number(timer.innerHTML) -1
+  if (timer.innerHTML < 1) {
+    navigator.vibrate(3000)
+    score = 0
+    game.startGame()
+  }
+}, 1000)
 
 var game = {
   startGame: function() {
+    timer.innerHTML = 5
     scoreDisplay.innerHTML = score
     shuffledList = shuffle(list)
     answer = getRandomArbitrary(0,3)
@@ -33,7 +46,6 @@ var game = {
       }
       navigator.vibrate(3000)
       game.startGame()
-
     }
   }
 }
